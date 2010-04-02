@@ -14,7 +14,7 @@ class EmailsController < ApplicationController
     raw = email[:raw]
         
     # Creating a new tracking in PivotalTracker
-    story = Story.create(:name => subject, :requested_by => "Alvaro Pereyra" , :description => "#{subject} \n #{raw}" , :project_id => 70807)
+    story = Story.create(:name => subject, :requested_by => "Alvaro Pereyra" , :description => "#{sender} \n #{raw}" , :project_id => 70807)
 
     # We get the code
     code = story.id
