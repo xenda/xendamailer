@@ -11,13 +11,25 @@ class EmailsController < ApplicationController
     subject = email[:subject]
     sender = email[:sender]
     to = email[:to]
-    raw = email[:raw]
+    raw = email[:raw].gsub!("<strong>","*")
+                     .gsub!("<b>","*")
+                     .gsub!("</strong>","*")
+                     .gsub!("</b>","*")
+                     .gsub!("<em>","_")
+                     .gsub!("<i>","_")
+                     .gsub!("</em>","_")
+                     .gsub!("</i>","_")
+                     .gsub!(/<.*>/,"")
         
     # Creating a new tracking in PivotalTracker
-    story = Story.create(:name => "#{code} - #{subject}", :requested_by => "Alvaro Pereyra" , :description => "#{sender} \n #{raw}" , :project_id => 70807, :story_type=>"bug")
+    story = Story.create(:name => "#{subject}", :requested_by => "Alvaro Pereyra" , :description => "#{sender} \n #{raw}" , :project_id => 70807, :story_type=>"bug")
 
     # We get the code
     code = story.id
+    
+    story.name = "#{story.id} - #{subject}"
+    story.save
+    
     # We get the issue's url
     pivotal_issue_url = story.url
     
