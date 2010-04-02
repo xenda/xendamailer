@@ -11,7 +11,7 @@ class IssueMailer < ActionMailer::Base
     @sender = sender
     @date = Time.zone.now
     @code = code || "123ABC".split("").shuffle.join
-    mail(:to=>sender, :subject=> "[XendaSupport] Incidencia recibida")
+    mail(:to=>sender, :subject=> "[XendaSupport] Incidencia recibida con código #{@code}")
   end
   
   def issue_receive(sender, subject, code, pivotal_issue_url)
