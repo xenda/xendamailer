@@ -19,7 +19,7 @@ class IssueMailer < ActionMailer::Base
     @title = subject
     @code = code
     @pivotal_issue_url = pivotal_issue_url
-    mail(:to=>"alvaro@xendacentral.com", :subject=>"[XendaSupport] Incidencia recibida de #{@sender}")
+    mail(:to=>"alvaro@xendacentral.com", :subject=>"[XendaSupport] Incidencia #{@code} recibida de #{@sender}")
   end
   
 end
