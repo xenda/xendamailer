@@ -1,1 +1,8 @@
-dfdfd
+- form_for(@user, :url=>{:action=>"create"}) do |f|
+ %p The email:
+ = f.text_field :email
+ %p The name:
+ = f.text_field :name
+ %p The content
+ = text_area_tag "email[content]"
+ = f.submit "Enviar Email"

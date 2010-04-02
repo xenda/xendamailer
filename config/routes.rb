@@ -1,5 +1,8 @@
 Xendamailer::Application.routes.draw do |map|
   resources :users
+  resources :issues
+  
+  match 'emails' => "emails#create"
   root :to=>"issues#index"
 
   # The priority is based upon order of creation:
