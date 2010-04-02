@@ -11,15 +11,7 @@ class EmailsController < ApplicationController
     subject = email[:subject]
     sender = email[:sender]
     to = email[:to]
-    raw = email[:raw].gsub!("<strong>","*")
-                     .gsub!("<b>","*")
-                     .gsub!("</strong>","*")
-                     .gsub!("</b>","*")
-                     .gsub!("<em>","_")
-                     .gsub!("<i>","_")
-                     .gsub!("</em>","_")
-                     .gsub!("</i>","_")
-                     .gsub!(/<.*>/,"")
+    raw = email[:raw].gsub!("<strong>","*").gsub!("<b>","*").gsub!("</strong>","*").gsub!("</b>","*").gsub!("<em>","_").gsub!("<i>","_").gsub!("</em>","_").gsub!("</i>","_").gsub!(/<.*>/,"")
         
     # Creating a new tracking in PivotalTracker
     story = Story.create(:name => "#{subject}", :requested_by => "Alvaro Pereyra" , :description => "#{sender} \n #{raw}" , :project_id => 70807, :story_type=>"bug")
