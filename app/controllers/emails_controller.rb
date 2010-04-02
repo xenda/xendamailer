@@ -55,7 +55,7 @@ class EmailsController < ApplicationController
     random_exit = exit_messages.shuffle.first
     
     room.speak "#{random_header} se ha registrado la incidencia #{code} de #{sender}"
-    room.speak "Nos dicen ésto: #{subject}"
+    room.speak "Nos dicen ésto: #{subject}. Se ha publicado en #{pivotal_issue_url}"
     room.speak random_exit
 
     head :ok
