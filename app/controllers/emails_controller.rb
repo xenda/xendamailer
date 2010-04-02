@@ -1,3 +1,5 @@
+require 'active_support/json/encoding'
+
 class EmailsController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
@@ -32,7 +34,8 @@ class EmailsController < ApplicationController
     #We inform the proper parties
     IssueMailer.issue_receive(sender, subject, code, pivotal_issue_url).deliver
     
-    campfire = Tinder::Campfire.new 'xenda', :token => '1769bcfa6c5fd00ff96749c1325a2d8491aad6f1'
+    campfire = Tinder::Campfire.new 'xenda'
+    campfire.login "1769bcfa6c5fd00ff96749c1325a2d8491aad6f1", "some_password"
     room = campfire.find_room_by_name 'General'
 
     messages = ["No quiero entromenterme, pero", 
